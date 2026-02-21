@@ -19,7 +19,7 @@ const handleResponse = async (response) => {
 export const getCandidateByEmail = async (email) => {
   try {
     const response = await fetch(
-      `${BASE_URL}/api/candidate/get-by-email?email=${email}`
+      `${BASE_URL}/api/candidate/get-by-email?email=${email}`,
     );
     return await handleResponse(response);
   } catch (error) {

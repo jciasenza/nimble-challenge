@@ -28,7 +28,8 @@ const JobItem = ({ job, candidate }) => {
         uuid: candidate.uuid,
         jobId: job.id,
         candidateId: candidate.candidateId,
-        repoUrl,
+        applicationId: candidate.applicationId,
+        repoUrl: repoUrl.replace(".git", ""),
       });
 
       setApplied(true);
