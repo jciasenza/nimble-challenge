@@ -7,14 +7,43 @@ import Footer from "./components/Footer";
 function App() {
   const [email, setEmail] = useState("");
   const [candidate, setCandidate] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const handleSubmit = async () => {
-    const data = await getCandidateByEmail(email);
-    setCandidate(data);
+    setError(null);
+
+    if (!email.trim()) {
+      setError("Email is required");
+      return;
+    }
+
+    if (!emailRegex.test(email)) {
+      setError("Invalid email format");
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      const data = await getCandidateByEmail(email);
+      setCandidate(data);
+    } catch (err) {
+      if (err.message.includes("404")) {
+        setError("Candidate not found");
+      } else {
+        setError(err.message || "Something went wrong");
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChangeEmail = () => {
     setCandidate(null);
+    setError(null);
   };
 
   return (
@@ -23,7 +52,19 @@ function App() {
         {candidate ? (
           <Jobs candidate={candidate} onChangeEmail={handleChangeEmail} />
         ) : (
-          <Home email={email} setEmail={setEmail} onSubmit={handleSubmit} />
+          <>
+            <Home
+              email={email}
+              setEmail={setEmail}
+              onSubmit={handleSubmit}
+              error={error}
+              loading={loading}
+            />
+
+            {loading && (
+              <p className="text-center mt-3 text-gray-500">Loading...</p>
+            )}
+          </>
         )}
 
         {candidate && <Footer />}
