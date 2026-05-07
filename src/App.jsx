@@ -3,6 +3,7 @@ import { getCandidateByEmail } from "./services/api";
 import Home from "./pages/Home";
 import Jobs from "./pages/Jobs";
 import Footer from "./components/Footer";
+import Header from "./components/Header";
 
 function App() {
   const [email, setEmail] = useState("");
@@ -48,9 +49,10 @@ function App() {
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-100">
+      <Header onChangeEmail={handleChangeEmail} />
       <main className="flex-grow">
         {candidate ? (
-          <Jobs candidate={candidate} onChangeEmail={handleChangeEmail} />
+          <Jobs candidate={candidate} />
         ) : (
           <>
             <Home
@@ -66,8 +68,7 @@ function App() {
             )}
           </>
         )}
-
-        {candidate && <Footer />}
+        <Footer />
       </main>
     </div>
   );

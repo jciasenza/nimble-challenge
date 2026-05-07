@@ -1,4 +1,6 @@
-import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp } from "react-icons/fa";
+
+const whatsapp = "+5491158094982";
 
 export default function Footer() {
   return (
@@ -14,30 +16,39 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="flex gap-6">
+          <div className="flex gap-6 text-[22px]">
+            <a
+              className="hover:text-green-400 hover:scale-125 transition-all duration-300"
+              href={`https://wa.me/${whatsapp.replace(/\D/g, "")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaWhatsapp />
+            </a>
+
             <a
               href="https://github.com/jciasenza"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white transition"
+              className="hover:text-white hover:scale-125 transition-all duration-300"
             >
-              <FaGithub size={22} />
+              <FaGithub />
             </a>
 
             <a
               href="https://www.linkedin.com/in/juan-carlos-iasenza-8119501a9/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white transition"
+              className="hover:text-blue-400 hover:scale-125 transition-all duration-300"
             >
-              <FaLinkedin size={22} />
+              <FaLinkedin />
             </a>
 
             <a
               href="mailto:iasenzajuancarlos@gmail.com"
-              className="hover:text-white transition"
+              className="hover:text-red-400 hover:scale-125 transition-all duration-300"
             >
-              <FaEnvelope size={22} />
+              <FaEnvelope />
             </a>
           </div>
         </div>

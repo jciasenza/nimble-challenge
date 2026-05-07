@@ -1,6 +1,6 @@
 const Home = ({ email, setEmail, onSubmit, error, loading }) => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100">
+    <div className="h-[70vh] flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100">
       <div className="bg-white p-10 rounded-3xl shadow-lg w-full max-w-md animate-fade-in">
         <h2 className="text-3xl font-bold mb-6 text-slate-800">
           Enter your email
